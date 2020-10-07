@@ -1,0 +1,14 @@
+<div [id]="index"  class="dataList">
+    <div [id]="index" class="image"><img [src]="image" alt="alt" width="100" height="100" [id]="index"/></div>
+    <div class="info">
+      <div class="card-number">
+        <a (click)="navigateToData($event, index, title, description, image)" ><span class="badge badge-info">Click to View Card: {{index}}</span></a>
+      </div>
+      <div [id]="index" contentEditable="false" class="title card-title h5">{{title}}</div>
+      <div [id]="index" contentEditable="false" class="desc"><p class="card-text">{{description}}</p></div>
+      <div class="remove" [id]="index">
+        <app-button btnClass="btn-danger" label="Remove"></app-button>
+      </div>
+      
+    </div>
+  </div>

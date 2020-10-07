@@ -1,0 +1,18 @@
+
+<div class="container">
+    <form>
+      <app-input-box type="text"  id = "title" label="Title" (onKeyUpEmitter)="titleTextBoxEvent($event)"></app-input-box>
+      <br/>
+      <app-text-area label="Description" (onKeyUpEmitter)="descTextAreaEvent($event)"></app-text-area>
+      <br/>
+      <app-input-box type="number"  label="Enter Count" max="100" (onKeyUpEmitter)="numberTextBoxEvent($event)"></app-input-box>
+      <br/>
+      <div *ngFor="let item of dataList" (click)="containerClicked($event)">
+        <app-data-list title="{{item.title}}" index="{{item.id}}" 
+        description="{{item.description}}"  image="{{item.image}}"></app-data-list>
+      </div>
+      <app-button btnClass="btn-primary" label="Add" (onClickEmitter)="addButtonClicked($event)"></app-button>
+    </form>
+    
+    
+  </div>

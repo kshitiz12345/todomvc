@@ -1,0 +1,34 @@
+.dataList {
+    display: grid;
+    grid-template-rows: 40% 60%;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin-bottom: 15px;
+}
+
+.dataList .image {
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.dataList .info {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    padding: 10px;;
+}
+
+.dataList .info .desc {
+    flex-grow: 1;
+}
+
+.dataList .info .remove {
+    align-self: flex-end;
+}
+
+
+.dataList .image img {
+    width: 100%;
+    height: 100%;
+}

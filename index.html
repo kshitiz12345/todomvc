@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+      <link rel="stylesheet" href="react-bundle.css">
+      <link rel="stylesheet" href="vue-bundle.css">
+      <title>TODO</title>
+      <base href="/">
+      <style>
+         .container {
+         margin-top: 50px;
+         margin-bottom: 50px;
+         }
+         .app {
+         display: none
+         }
+         .nav-item {
+         cursor: pointer;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <div class="jumbotron">
+            <h1 class="display-4">TODO React-Vue-Angular</h1>
+            <p class="lead">A simple web app to compare performance.</p>
+         </div>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav" id="navbar-nav">
+                  <li class="nav-item react-item">
+                     <a class="nav-link" id="react-link" value="react">React</a>
+                  </li>
+                  <li class="nav-item angular-item">
+                     <a class="nav-link" id="angular-link" value="angular">Angular</a>
+                  </li>
+                  <li class="nav-item vue-item">
+                     <a class="nav-link" id="vue-link" value="vue">Vue</a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <br/>
+         <div id="react-app" class="app"></div>
+         <div class="app vue-app"><div id="vue-app" ></div></div>
+         <div id="angular-app" class="app">
+            <app-root></app-root>
+         </div>
+      </div>
+   </body>
+   <script src="react-bundle.js"></script>
+   <script src="vue-bundle.js"></script>
+   <script src="angular-bundle.js"></script>
+   <script>
+        (function(){
+            const navBar = document.querySelector(".navbar-nav");
+            const appList = document.querySelectorAll(".app");
+            const navList = document.querySelectorAll(".nav-item");
+           
+            navBar.addEventListener('click', function(e) {
+                appList.forEach((app) => {
+                    app.style.display = "none";
+                })
+                navList.forEach((curNav) => {
+                    curNav.classList.remove("active");
+                })
+                const value = e.target.getAttribute("value");;
+                let curApp = null;
+                let curNav = null;
+                if(value === "react") {
+                    curApp = document.querySelector("#react-app");
+                    curNav = document.querySelector(".react-item");
+                } else if(value === "angular") {
+                    curApp = document.querySelector("#angular-app");
+                    curNav = document.querySelector(".angular-item");
+                } else if(value === "vue") {
+                    curApp = document.querySelector(".vue-app");
+                    curNav = document.querySelector(".vue-item");
+                }
+
+                if(curApp) {
+                    curNav.classList.add("active");
+                    curApp.style.display = "block";
+                }
+            })
+        })()
+   </script>
+</html>

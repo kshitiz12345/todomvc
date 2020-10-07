@@ -1,0 +1,12 @@
+<div [id]="index" class="container data">
+    <a routerLink="/"><span class="badge badge-info home">Click to go Home</span></a>
+    <div [id]="index" class="image"><img [src]="image" alt="alt" width="100" height="100" [id]="index"/></div>
+    <div class="info">
+      <div class="card-number">
+        <span class="badge badge-info">Card: {{index}}</span>
+      </div>
+      <div [id]="index" contentEditable="true" class="title card-title h5">{{title}}</div>
+      <div [id]="index" contentEditable="true" class="desc"><p class="card-text">{{description}}</p></div>
+      
+    </div>
+  </div>
