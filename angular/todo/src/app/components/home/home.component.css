@@ -1,3 +1,7 @@
 .container {
     display: grid;
 }
+.container .tag_count {
+    display: flex;
+    justify-content: space-between;
+}

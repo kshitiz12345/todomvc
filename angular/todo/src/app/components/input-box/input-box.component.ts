@@ -24,8 +24,7 @@ export class InputBoxComponent implements OnInit {
   }
 
   onKeyUp($event) {
-    const value : string = $event.target.value;
-    this.onKeyUpEmitter.emit(value)
+    this.onKeyUpEmitter.emit($event)
   }
 
 }

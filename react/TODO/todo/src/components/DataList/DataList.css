@@ -6,17 +6,17 @@
     margin-bottom: 15px;
 }
 
-.dataList .image {
-    grid-row-start: 1;
-    grid-row-end: 1;
-}
-
 .dataList .info {
     display: flex;
     flex-direction: column;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    padding: 10px;;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.tag {
+    margin-left: 10px;
 }
 
 .dataList .info .desc {
@@ -27,8 +27,3 @@
     align-self: flex-end;
 }
 
-
-.dataList .image img {
-    width: 100%;
-    height: 100%;
-}

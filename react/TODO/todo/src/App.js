@@ -2,45 +2,40 @@ import React, { StrictMode } from 'react';
 import './App.css';
 import DataList from './components/DataList/DataList';
 import InputBox from './components/InputBox/InputBox';
-import TextArea from './components/TextArea/TextArea';
 import Data from './Data';
 import FormButton from './components/FormButton/FormButton';
-import { Container, Jumbotron } from 'react-bootstrap';
 
 class App extends React.Component {
   static MAX_COUNT = 100;
-  timeout = null;
 
   constructor() {
     super()
-    const data = new Data();
+    const data = new Data()
     this.state = {
       title: data.title,
-      description: data.description,
-      date: data.date,
-      image: data.image,
       count: data.count,
+      tag : "",
       dataList: []
     }
     this.numberTextBoxEvent = this.numberTextBoxEvent.bind(this)
     this.titleTextBoxEvent = this.titleTextBoxEvent.bind(this)
-    this.descTextAreaEvent = this.descTextAreaEvent.bind(this)
     this.addButtonClicked = this.addButtonClicked.bind(this)
     this.containerClicked = this.containerClicked.bind(this);
     this.populateList = this.populateList.bind(this)
-    this.onContentChange = this.onContentChange.bind(this)
+    this.tagEvent = this.tagEvent.bind(this);
   }
 
-  populateList(count) {
+  populateList(count, currentDataList=[]) {
     const dataList = []
     for(let i=0; i<count;i++) {
-      dataList.push(<DataList title={this.state.title} index={i+1} key={i+1}
-                  description={this.state.description} date={this.state.date} image={this.state.image}
+      const tag = Math.randomString()
+      dataList.push(<DataList title={this.state.title} index={i+1} key={tag} tag={tag}
+                   date={this.state.date} 
                   ></DataList>)
     }
     
     this.setState({
-      dataList: dataList
+      dataList: [...currentDataList, ...dataList]
     });
   
   }
@@ -61,58 +56,34 @@ class App extends React.Component {
     this.populateList(this.state.count);
   }
 
-  descTextAreaEvent(event) {
-    const description = event.target.value;
-    this.setState({
-      description: description
-    });
-    this.populateList(this.state.count);
-  }
 
   addButtonClicked(event) {
-    this.populateList(this.state.count + this.state.dataList.length);
+    this.populateList(this.state.count, this.state.dataList);
   }
 
   containerClicked(event) {
     if(event.target.type === "button") {
       const elem = event.target.parentElement.parentElement;
-      const index = parseInt(elem.getAttribute("index"));
-      const dataList = this.state.dataList.filter(data => parseInt(data.key) !== index);
+      const tag = (elem.getAttribute("tag"));
+      const dataList = this.state.dataList.filter(data => (data.props.tag) !== tag);
       this.setState({
         dataList : dataList
       })
     }
   }
 
-  onContentChange(event) {
-    clearTimeout(this.timeout)
-    this.timeout = setTimeout(() => {
-      const elem = event.target;
-      const index = parseInt(elem.getAttribute("index"));
-      const type = (elem.getAttribute("data-type"));
-      const text = (event.target.textContent);
-      let data = null;
-      if(type === "title") {
-         data = <DataList title={text} index={index} key={index}
-                      description={this.state.description} date={this.state.date} image={this.state.image}
-                    ></DataList>;
-      } else if(type === "desc") {
-        data = <DataList title={this.state.title} index={index} key={index}
-                      description={text} date={this.state.date} image={this.state.image}
-                    ></DataList>;
-      }
+  tagEvent(event) {
+    if(event.target.value.length) {
+      const dataList = this.state.dataList.filter(data => {
+        return (data.props.tag.includes(event.target.value))
+      });
+      this.setState({
+        dataList : dataList
+      })
+    }  else{
+      this.populateList(this.state.count);
+    }   
       
-      if(data) {
-        const dataList = [...this.state.dataList];
-        dataList[index-1] = data;
-        this.setState({
-          dataList : dataList
-        });
-      }
-    }, 1000)
-    
-    
-    
   }
 
   
@@ -124,11 +95,12 @@ class App extends React.Component {
       <div className="container">
         
      <form>
-       <InputBox onKeyUp={this.titleTextBoxEvent} type="text"  label="Title"></InputBox>
+       <InputBox onKeyUp={this.titleTextBoxEvent} type="text"  label="Title" ></InputBox>
        <br/>
-       <TextArea onKeyUp={this.descTextAreaEvent} type="text" label="Description"></TextArea>
-       <br/>
-       <InputBox onKeyUp={this.numberTextBoxEvent} type="number" label="Enter Count" max="100"></InputBox>
+       <div className="tag_count">
+        <InputBox onKeyUp={this.numberTextBoxEvent} type="number" label="Enter Count" max="100"></InputBox>
+        <InputBox onKeyUp={this.tagEvent} type="text" label="Search by Tag" max="100"></InputBox>
+       </div>
        <br/>
        <div onClick={this.containerClicked}>
         {this.state.dataList}

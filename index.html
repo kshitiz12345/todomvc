@@ -48,41 +48,51 @@
          </div>
       </div>
    </body>
-   <script src="react-bundle.js"></script>
-   <script src="vue-bundle.js"></script>
-   <script src="angular-bundle.js"></script>
+   <script src="react-bundle.js" async></script>
+   <script src="vue-bundle.js" async></script>
+   <script src="angular-bundle.js" async></script>
    <script>
-        (function(){
-            const navBar = document.querySelector(".navbar-nav");
-            const appList = document.querySelectorAll(".app");
-            const navList = document.querySelectorAll(".nav-item");
-           
-            navBar.addEventListener('click', function(e) {
-                appList.forEach((app) => {
-                    app.style.display = "none";
-                })
-                navList.forEach((curNav) => {
-                    curNav.classList.remove("active");
-                })
-                const value = e.target.getAttribute("value");;
-                let curApp = null;
-                let curNav = null;
-                if(value === "react") {
-                    curApp = document.querySelector("#react-app");
-                    curNav = document.querySelector(".react-item");
-                } else if(value === "angular") {
-                    curApp = document.querySelector("#angular-app");
-                    curNav = document.querySelector(".angular-item");
-                } else if(value === "vue") {
-                    curApp = document.querySelector(".vue-app");
-                    curNav = document.querySelector(".vue-item");
-                }
+    Math.randomString = function(length) {
+        length = length || 5;
+        let result = '';
+        let characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    };
+    (function() {
+        const navBar = document.querySelector(".navbar-nav");
+        const appList = document.querySelectorAll(".app");
+        const navList = document.querySelectorAll(".nav-item");
 
-                if(curApp) {
-                    curNav.classList.add("active");
-                    curApp.style.display = "block";
-                }
+        navBar.addEventListener('click', function(e) {
+            appList.forEach((app) => {
+                app.style.display = "none";
             })
-        })()
+            navList.forEach((curNav) => {
+                curNav.classList.remove("active");
+            })
+            const value = e.target.getAttribute("value");;
+            let curApp = null;
+            let curNav = null;
+            if (value === "react") {
+                curApp = document.querySelector("#react-app");
+                curNav = document.querySelector(".react-item");
+            } else if (value === "angular") {
+                curApp = document.querySelector("#angular-app");
+                curNav = document.querySelector(".angular-item");
+            } else if (value === "vue") {
+                curApp = document.querySelector(".vue-app");
+                curNav = document.querySelector(".vue-item");
+            }
+
+            if (curApp) {
+                curNav.classList.add("active");
+                curApp.style.display = "block";
+            }
+        })
+    })()
    </script>
 </html>

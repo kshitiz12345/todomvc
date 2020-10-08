@@ -13,13 +13,10 @@ export class DataComponent implements OnInit {
   index:number;
 
   @Input()
-  description:string;
-
-  @Input()
   title:string;
 
   @Input()
-  image:string;
+  tag:string;
 
 
   constructor(private getDataService : GetDataService) { }
@@ -27,9 +24,8 @@ export class DataComponent implements OnInit {
   ngOnInit(): void {
     const data = this.getDataService.selectedData;
     this.index = parseInt(data.index);
-    this.description = data.description;
     this.title = data.title;
-    this.image = data.image;
+    this.tag = data.tag;
   }
 
 }

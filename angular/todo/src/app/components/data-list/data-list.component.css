@@ -6,16 +6,12 @@
     margin-bottom: 15px;
 }
 
-.image {
-    grid-row-start: 1;
-    grid-row-end: 1;
-}
 
 .info {
     display: flex;
     flex-direction: column;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
     padding: 10px;;
 }
 
@@ -28,11 +24,10 @@
 }
 
 
-.image img {
-    width: 100%;
-    height: 100%;
-}
-
 .card-number {
     cursor: pointer;
+}
+
+.tag {
+    margin-left: 10px;
 }

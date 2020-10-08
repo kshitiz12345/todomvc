@@ -13,22 +13,18 @@ export class DataListComponent implements OnInit {
   index:number;
 
   @Input()
-  description:string;
-
-  @Input()
   title:string;
 
   @Input()
-  image:string;
-
+  tag:string;
 
   constructor(private getDataService : GetDataService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  navigateToData($event, index, title, description, image) {
-    this.getDataService.selectData({index, title, description, image});
+  navigateToData($event, index, title, tag) {
+    this.getDataService.selectData({index, title, tag});
     this.router.navigate(["/data", index]);
   }
 
