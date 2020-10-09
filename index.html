@@ -23,7 +23,9 @@
       <div class="container">
          <div class="jumbotron">
             <h1 class="display-4">TODO React-Vue-Angular</h1>
-            <p class="lead">A simple web app to compare performance.</p>
+            <p class="lead">A simple web app to compare performance. <b>Start playing with the form and experience framework's 
+               rendering performance. Use Chrome DevTools for detailed analysis !!!</b>
+            </p>
          </div>
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -52,47 +54,73 @@
    <script src="vue-bundle.js" async></script>
    <script src="angular-bundle.js" async></script>
    <script>
-    Math.randomString = function(length) {
-        length = length || 5;
-        let result = '';
-        let characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        let charactersLength = characters.length;
-        for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    };
-    (function() {
-        const navBar = document.querySelector(".navbar-nav");
-        const appList = document.querySelectorAll(".app");
-        const navList = document.querySelectorAll(".nav-item");
 
-        navBar.addEventListener('click', function(e) {
-            appList.forEach((app) => {
-                app.style.display = "none";
-            })
-            navList.forEach((curNav) => {
-                curNav.classList.remove("active");
-            })
-            const value = e.target.getAttribute("value");;
-            let curApp = null;
-            let curNav = null;
-            if (value === "react") {
-                curApp = document.querySelector("#react-app");
-                curNav = document.querySelector(".react-item");
-            } else if (value === "angular") {
-                curApp = document.querySelector("#angular-app");
-                curNav = document.querySelector(".angular-item");
-            } else if (value === "vue") {
-                curApp = document.querySelector(".vue-app");
-                curNav = document.querySelector(".vue-item");
+         Math.randomString = function(length) {
+            length = length || 5;
+            let result = '';
+            let characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+               result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+         };
+         (function() {
+            const navBar = document.querySelector(".navbar-nav");
+            const appList = document.querySelectorAll(".app");
+            const navList = document.querySelectorAll(".nav-item");
+            const cleanup = () => {
+               appList.forEach((app) => {
+                     app.style.display = "none";
+               })
+               navList.forEach((curNav) => {
+                     curNav.classList.remove("active");
+               })
+            };
+            const selectTab = (curApp, curNav) => {
+               if (curApp) {
+                     curNav.classList.add("active");
+                     curApp.style.display = "block";
+               }
+            }
+            const startReact = () => {
+               curApp = document.querySelector("#react-app");
+               curNav = document.querySelector(".react-item");
+               selectTab(curApp, curNav);
             }
 
-            if (curApp) {
-                curNav.classList.add("active");
-                curApp.style.display = "block";
+            const startAngular = () => {
+               curApp = document.querySelector("#angular-app");
+               curNav = document.querySelector(".angular-item");
+               selectTab(curApp, curNav);
             }
-        })
-    })()
+
+            const startVue = () => {
+               curApp = document.querySelector(".vue-app");
+               curNav = document.querySelector(".vue-item");
+               selectTab(curApp, curNav);
+            }
+
+            navBar.addEventListener('click', function(e) {
+               cleanup()
+               const value = e.target.getAttribute("value");;
+               let curApp = null;
+               let curNav = null;
+               if (value === "react") {
+                     startReact()
+               } else if (value === "angular") {
+                     startAngular()
+               } else if (value === "vue") {
+                     startVue()
+               }
+
+               if (curApp) {
+                     curNav.classList.add("active");
+                     curApp.style.display = "block";
+               }
+            });
+
+            startReact()
+         })()
    </script>
 </html>

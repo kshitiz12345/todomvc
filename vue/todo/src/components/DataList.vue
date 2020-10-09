@@ -1,6 +1,6 @@
 
 <template>
-     <div :index="index" :key="index" class="dataList">
+     <div :index="index" :key="index" class="dataList vue-data-list">
         <div class="info" :index="index">
           <div class="" >
               <b-badge @click="routeToCard()" variant="info card-number">Click to View Card: {{index}}</b-badge>
@@ -41,13 +41,13 @@ export default {
 </script>
 
 <style>
-    .dataList {
+    .vue-data-list {
         border: 1px solid rgba(0,0,0,.125);
         border-radius: .25rem;
         margin-bottom: 15px;
     }
 
-    .dataList .info {
+    .vue-data-list .info {
         display: flex;
         flex-direction: column;
         grid-row-start: 1;
@@ -55,19 +55,19 @@ export default {
         padding: 10px;;
     }
 
-    .dataList .info .desc {
+    .vue-data-list .info .desc {
         flex-grow: 1;
     }
 
-    .dataList .info .remove {
+    .vue-data-list .info .remove {
         align-self: flex-end;
     }
 
-    .dataList .card-number {
+    .vue-data-list .card-number {
       cursor: pointer;
     }
 
-    .tag {
+    .vue-data-list .tag {
         margin-left: 10px;
     }
 

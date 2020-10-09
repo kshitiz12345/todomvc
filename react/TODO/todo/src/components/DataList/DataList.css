@@ -1,4 +1,4 @@
-.dataList {
+.react-data-list {
     display: grid;
     grid-template-rows: 40% 60%;
     border: 1px solid rgba(0,0,0,.125);
@@ -6,7 +6,7 @@
     margin-bottom: 15px;
 }
 
-.dataList .info {
+.react-data-list .info {
     display: flex;
     flex-direction: column;
     grid-row-start: 1;
@@ -15,15 +15,15 @@
     font-size: 1em;
 }
 
-.tag {
+.react-data-list .tag {
     margin-left: 10px;
 }
 
-.dataList .info .desc {
+.react-data-list .info .desc {
     flex-grow: 1;
 }
 
-.dataList .info .remove {
+.react-data-list .info .remove {
     align-self: flex-end;
 }
 

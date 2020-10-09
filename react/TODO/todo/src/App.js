@@ -102,7 +102,7 @@ class App extends React.Component {
         <InputBox onKeyUp={this.tagEvent} type="text" label="Search by Tag" max="100"></InputBox>
        </div>
        <br/>
-       <div onClick={this.containerClicked}>
+       <div onClick={this.containerClicked} id="react-data-list">
         {this.state.dataList}
        </div>
        <FormButton label="Add" onClick={this.addButtonClicked} type="button" variant="primary"></FormButton>

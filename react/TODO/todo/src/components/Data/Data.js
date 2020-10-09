@@ -12,7 +12,7 @@ class Data extends React.Component {
 
   render() {
     return (
-      <div index={this.props.location.state.index} key={this.props.location.state.index} className="container data">
+      <div index={this.props.location.state.index} key={this.props.location.state.index} className="container react-data">
         <div className="home">
         <Link to={
               {

@@ -13,7 +13,7 @@ class DataList extends React.Component {
 
   render() {
     return (
-      <div index={this.props.index} key={this.props.index} className="dataList">
+      <div index={this.props.index} key={this.props.index} className="dataList react-data-list">
         <div className="info">
           <div className="card-number">
             <Link to={
