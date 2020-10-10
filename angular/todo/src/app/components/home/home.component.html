@@ -1,18 +1,21 @@
 
 <div class="container">
-    <form>
+    <form id="angular-form">
       <app-input-box type="text"  id = "title" label="Title" (onKeyUpEmitter)="titleTextBoxEvent($event)"></app-input-box>
       <br/>
       <div class="tag_count">
           <app-input-box type="number"  label="Enter Count" max="100" (onKeyUpEmitter)="numberTextBoxEvent($event)"></app-input-box>
           <app-input-box type="text"  label="Search by Tag" max="100" (onKeyUpEmitter)="tagEvent($event)"></app-input-box>
       </div>
-      <br/>
-      <div *ngFor="let item of dataList" (click)="containerClicked($event)">
-        <app-data-list title="{{item.title}}" index="{{item.id}}" tag="{{item.tag}}" ></app-data-list>
-      </div>
-      <app-button btnClass="btn-primary" label="Add" (onClickEmitter)="addButtonClicked($event)"></app-button>
     </form>
+      <br/>
+      <div id="angular-data-list">
+        <div *ngFor="let item of dataList" (click)="containerClicked($event)" >
+          <app-data-list title="{{item.title}}" index="{{item.id}}" tag="{{item.tag}}" ></app-data-list>
+        </div>
+      </div>
+      <app-button btnClass="btn-primary" label="Add" (onClickEmitter)="addButtonClicked($event)" id="angular-add-button"></app-button>
+    
     
     
   </div>

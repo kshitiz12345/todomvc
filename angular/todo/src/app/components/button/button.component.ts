@@ -11,6 +11,9 @@ export class ButtonComponent implements OnInit {
   label:string;
 
   @Input()
+  id:string;
+
+  @Input()
   btnClass:string;
   
   classNames:string = "btn";

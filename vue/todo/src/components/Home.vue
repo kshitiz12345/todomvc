@@ -1,14 +1,18 @@
 <template>
   <div class="container">
+    <form ID="vue-form">
       <InputBox type="text" id="title" label="Title" v-on:keyup="titleTextBoxEvent($event)"/>
       <div class="tag_count">
         <InputBox type="number" id="count" label="Enter Count" v-bind:value="count" v-on:keyup="numberTextBoxEvent($event)"/>
         <InputBox type="text" id="tag" label="Search by Tag" v-bind:value="tag" v-on:keyup="tagEvent($event)"/>
       </div>
-      <div v-for="item in dataList" :key="item.id" v-on:click="containerClicked($event)">
-        <DataList :title="item.title" :index="item.id" :key="item.id" :tag="item.tag"></DataList>
+    </form>
+       <div id="vue-data-list">
+        <div v-for="item in dataList" :key="item.id" v-on:click="containerClicked($event)" >
+          <DataList :title="item.title" :index="item.id" :key="item.id" :tag="item.tag"></DataList>
+        </div>
       </div>
-      <Button label="Add" type="button" variant="primary" v-on:clicked="addButtonClicked"/>
+      <Button label="Add" type="button" variant="primary" v-on:clicked="addButtonClicked" id="vue-add-button"/>
   </div>
 </template>
 
@@ -47,6 +51,7 @@ export default {
           tag: tag
         })
       }
+      performance.trigger();
       this.dataList = [...currentDataList, ...dataList];
     },
     addButtonClicked() {
@@ -66,6 +71,7 @@ export default {
       if($event.target.type === "button") {
         const elem = $event.target.parentElement;
         const tag = (elem.getAttribute("tag"));
+        performance.trigger();
         this.dataList = this.dataList.filter(data => (data.tag) !== tag);
       }
     },
@@ -75,6 +81,7 @@ export default {
         const dataList = this.dataList.filter(data => {
           return (data.tag.includes(event.target.value))
         });
+        performance.trigger();
         this.dataList = dataList;
       }  else{
         this.populateList(this.count);  

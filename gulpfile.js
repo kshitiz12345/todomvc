@@ -2,7 +2,7 @@ var gulp = require('gulp');
 
 var concat = require('gulp-concat');
 
-gulp.task('bundle', function() {
+gulp.task('default', function() {
     gulp.src('react/TODO/todo/build/static/js/*.js')
         .pipe(concat('react-bundle.js'))
         .pipe(gulp.dest('./'));

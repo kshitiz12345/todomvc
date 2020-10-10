@@ -34,6 +34,7 @@ class App extends React.Component {
                   ></DataList>)
     }
     
+    performance.trigger();
     this.setState({
       dataList: [...currentDataList, ...dataList]
     });
@@ -66,6 +67,7 @@ class App extends React.Component {
       const elem = event.target.parentElement.parentElement;
       const tag = (elem.getAttribute("tag"));
       const dataList = this.state.dataList.filter(data => (data.props.tag) !== tag);
+      performance.trigger();
       this.setState({
         dataList : dataList
       })
@@ -77,6 +79,7 @@ class App extends React.Component {
       const dataList = this.state.dataList.filter(data => {
         return (data.props.tag.includes(event.target.value))
       });
+      performance.trigger();
       this.setState({
         dataList : dataList
       })
@@ -94,19 +97,20 @@ class App extends React.Component {
     <StrictMode>
       <div className="container">
         
-     <form>
+     <form ID="react-form">
        <InputBox onKeyUp={this.titleTextBoxEvent} type="text"  label="Title" ></InputBox>
        <br/>
        <div className="tag_count">
         <InputBox onKeyUp={this.numberTextBoxEvent} type="number" label="Enter Count" max="100"></InputBox>
         <InputBox onKeyUp={this.tagEvent} type="text" label="Search by Tag" max="100"></InputBox>
        </div>
+       </form>
        <br/>
        <div onClick={this.containerClicked} id="react-data-list">
         {this.state.dataList}
        </div>
-       <FormButton label="Add" onClick={this.addButtonClicked} type="button" variant="primary"></FormButton>
-     </form>
+       <FormButton label="Add" onClick={this.addButtonClicked} type="button" variant="primary" id="react-add-button"></FormButton>
+     
      
      </div>
      </StrictMode>

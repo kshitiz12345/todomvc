@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
           tag: tag
         })
       }
+      performance['trigger']();
       this.dataList = [...currentDataList, ...dataList];;
   }
 
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
     if(event.target.type === "button") {
       const elem = event.target.parentElement.parentElement;
       const tag = (elem.getAttribute("id"));
+      performance['trigger']();
       this.dataList = this.dataList.filter(data => (data.tag) !== tag);
     }
   }
@@ -64,6 +66,7 @@ export class HomeComponent implements OnInit {
       const dataList = this.dataList.filter(data => {
         return (data.tag.includes(event.target.value))
       });
+      performance['trigger']();
       this.dataList = dataList;
     }  else{
       this.populateList(this.data.count);  
