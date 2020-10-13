@@ -10,63 +10,42 @@ Math.randomString = function(length) {
  };
  (function() {
     const navBar = document.querySelector(".navbar-nav");
-    const appList = document.querySelectorAll(".app");
-    const navList = document.querySelectorAll(".nav-item");
     const time_elapsed_elem = document.querySelector("#time_elapsed");
     const track_callback  = (time_elapsed) => {
        time_elapsed_elem.innerHTML = `Time consumed in DOM manipulation is ${time_elapsed} milliseconds`
     }
     const cleanup = () => {
-       appList.forEach((app) => {
-             app.style.display = "none";
-       })
-       navList.forEach((curNav) => {
-             curNav.classList.remove("active");
-       })
+      little.displayElement.hideElement(".app");
+      little.removeCSSClass(".nav-item", "active")
     };
     const selectTab = (curApp, curNav) => {
-       if (curApp) {
-             curNav.classList.add("active");
-             curApp.style.display = "block";
-       }
+      little.displayElement.showElement(curApp);
+      little.addCSSClass(curNav, "active");
     }
     const startReact = () => {
-       curApp = document.querySelector("#react-app");
-       curNav = document.querySelector(".react-item");
-       selectTab(curApp, curNav);
+       selectTab("#react-app", ".react-item");
        performance.track("#react-data-list",  track_callback)
     }
 
     const startAngular = () => {
-       curApp = document.querySelector("#angular-app");
-       curNav = document.querySelector(".angular-item");
-       selectTab(curApp, curNav);
+       selectTab("#angular-app", ".angular-item");
        performance.track("#angular-data-list",  track_callback)
     }
 
     const startVue = () => {
-       curApp = document.querySelector(".vue-app");
-       curNav = document.querySelector(".vue-item");
-       selectTab(curApp, curNav);
+       selectTab(".vue-app", ".vue-item");
        performance.track("#vue-data-list", track_callback)
     }
 
     navBar.addEventListener('click', function(e) {
        cleanup()
        const value = e.target.getAttribute("value");;
-       let curApp = null;
-       let curNav = null;
        if (value === "react") {
              startReact()
        } else if (value === "angular") {
              startAngular()
        } else if (value === "vue") {
              startVue()
-       }
-
-       if (curApp) {
-             curNav.classList.add("active");
-             curApp.style.display = "block";
        }
     });
 
